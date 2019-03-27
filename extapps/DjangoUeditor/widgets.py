@@ -51,6 +51,7 @@ class UEditorWidget(forms.Textarea):
         # 扩展命令
         self.command = command
         self.event_handler = event_handler
+
         # 上传路径
         self.upload_settings = upload_settings.copy()
         self.upload_settings.update({
@@ -74,7 +75,7 @@ class UEditorWidget(forms.Textarea):
                 "toolbars"] = USettings.TOOLBARS_SETTINGS[toolbars]
         else:
             self.ueditor_settings["toolbars"] = toolbars
-            # raise ValueError('toolbars should be a string defined in DjangoUeditor.settings.TOOLBARS_SETTINGS, options are full(default), besttome, mini and normal!')
+
         self.ueditor_settings.update(settings)
         super(UEditorWidget, self).__init__(attrs)
 

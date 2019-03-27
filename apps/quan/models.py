@@ -17,9 +17,12 @@ class QaunActive(models.Model):
     note = models.TextField(verbose_name='备注',
                             null=True,
                             blank=True)  # 后台表单提交时的验证是否为空
+    def __str__(self):
+        return self.title
 
     class Meta:
         db_table = 't_quan_active'
         verbose_name = '优惠劵活动'
         verbose_name_plural = verbose_name
         ordering = ['-publish_date']
+
