@@ -20,7 +20,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -33,7 +32,10 @@ INSTALLED_APPS = [
     'xadmin',
     'crispy_forms',
     'reversion',
-    'quan'
+    'quan',
+    'foods',
+    'DjangoUeditor',
+
 ]
 
 MIDDLEWARE = [
@@ -67,7 +69,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'FoodsAdminServer.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
@@ -77,7 +78,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -97,13 +97,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -111,8 +110,30 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/static/'  # 网络中访问站点资源的URL 地址
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')  # 本站点的静态文件存放的目录
+]
+
+MEDIA_URL = '/static/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
+
+UEDITOR_SETTINGS = {
+    "toolbars": {
+        "mini": [['source', '|', 'bold', 'italic', 'underline']],
+    },
+    "images_upload": {
+        "allow_type": "jpg, png",  # 定义允许的上传的图片类型
+        "max_size": "2222kb"  # 定义允许上传的图片大小，0代表不限制
+    },
+    "files_upload": {
+        "allow_type": "zip,rar",  # 定义允许的上传的文件类型
+        "max_size": "2222kb"  # 定义允许上传的文件大小，0代表不限制
+    },
+    "image_manager": {
+        "location": ""  # 图片管理器的位置,如果没有指定，默认跟图片路径上传一样
+    }
+}
