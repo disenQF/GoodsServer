@@ -122,9 +122,6 @@ MEDIA_URL = '/static/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 
 UEDITOR_SETTINGS = {
-    "toolbars": {
-        "mini": [['source', '|', 'bold', 'italic', 'underline']],
-    },
     "images_upload": {
         "allow_type": "jpg, png",  # 定义允许的上传的图片类型
         "max_size": "2222kb"  # 定义允许上传的图片大小，0代表不限制

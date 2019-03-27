@@ -36,6 +36,7 @@ def get_image_name(instance, filename):
     return 'foods/%s%s' % (md5_.format_md5(filename),
                            os.path.splitext(filename)[-1])
 
+
 class Foods(models.Model):
     name = models.CharField(verbose_name='食物名称',
                             max_length=100)
