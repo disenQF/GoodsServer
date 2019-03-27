@@ -26,3 +26,21 @@ class QaunActive(models.Model):
         verbose_name_plural = verbose_name
         ordering = ['-publish_date']
 
+
+class QuanInfo(models.Model):
+    active = models.ForeignKey(QaunActive,
+                               verbose_name='所属活动',
+                               on_delete=models.CASCADE)
+
+    quan_num = models.CharField(verbose_name='编号', max_length=20)
+    rate = models.FloatField(verbose_name='折扣率', default=0.9)
+    title = models.CharField(verbose_name='标题', max_length=50)
+
+    def __str__(self):
+        return self.title
+
+
+    class Meta:
+        db_table = 't_quan_info'
+        verbose_name = '优惠劵详情'
+        verbose_name_plural = verbose_name
