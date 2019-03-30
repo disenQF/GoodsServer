@@ -5,6 +5,8 @@ from DjangoUeditor.models import UEditorField
 
 from utils import md5_
 
+from utils import es_
+
 # Create your models here.
 # 食物的分类(家常菜谱-> 家常菜/凉菜)
 class Category(models.Model):
@@ -36,7 +38,6 @@ def get_image_name(instance, filename):
     return 'foods/%s%s' % (md5_.format_md5(filename),
                            os.path.splitext(filename)[-1])
 
-
 class Foods(models.Model):
     name = models.CharField(verbose_name='食物名称',
                             max_length=100)
@@ -64,6 +65,30 @@ class Foods(models.Model):
     category = models.ForeignKey(Category,
                                  verbose_name='分类',
                                  on_delete=models.CASCADE)
+
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        # UPDATE 更新  SAVE 新增
+        is_update = True if self.id else False
+
+        super().save()
+        # 将当前的实例对象转成 ES引擎的doc数据
+        item = {
+            'cate_name': self.category.name,
+            'id': self.id,
+            'name': self.name,
+            'price': self.price,
+            'image': self.image.path if self.image else ''
+        }
+        if is_update:
+            es_.update_doc('foods_site', 'foods', item)
+        else:
+            es_.add_doc('foods_site', 'foods', item)
+
+    def delete(self, using=None, keep_parents=False):
+        print('---mode delete-----')
+        es_.delete_doc('foods_site', 'foods', self.id)
+        return super().delete()
 
     def __str__(self):
         return self.name
