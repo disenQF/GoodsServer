@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'quan',
     'foods',
     'DjangoUeditor',
+    'djcelery',
 
 ]
 
@@ -139,3 +140,10 @@ UEDITOR_SETTINGS = {
         "location": ""  # 图片管理器的位置,如果没有指定，默认跟图片路径上传一样
     }
 }
+
+# Celery配置
+import djcelery
+djcelery.setup_loader()
+BROKER_URL = 'redis://127.0.0.1:6379/1' # 消息中间件的位置
+CELERY_IMPORTS = ('foods.tasks', )
+CELERY_TIMEZONE = 'Asia/Shanghai'
