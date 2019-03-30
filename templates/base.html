@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+            主页
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="/static/base/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/static/base/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/base/css/base.css">
+    {% block css %}
+
+    {% endblock %}
+</head>
+<body>
+<div class="container">
+    <div id="header">
+        <ul>
+            <li>
+                <a href="/">主页</a>
+            </li>
+            <li>
+                <a href="/">今日推荐</a>
+            </li>
+            <li>
+                <a href="/">总排行</a>
+            </li>
+            <li>
+                <input name="q" width="100" style="height: 25px">
+                <span class="glyphicon glyphicon-search btn btn-sm btn-primary"
+                      style="height: 25px;margin-bottom: 5px"></span>
+            </li>
+            <li style="margin-left: 100px">
+                {% if request.session.user_phone %}
+                    <span class="btn btn-sm btn-link"> {{ request.session.user_phone }}</span>
+                {% else %}
+                    <a href="/login/" class="btn btn-sm btn-link">Login</a>
+                    <a href="#" class="btn btn-sm btn-link">Regist</a>
+                {% endif %}
+
+            </li>
+            <div class="clearfix"></div>
+        </ul>
+
+    </div>
+    <div>
+        {% block content %}
+
+        {% endblock %}
+    </div>
+    <footer>
+        <div>
+            <h5>@disenQF</h5>
+        </div>
+    </footer>
+</div>
+<script src="/static/base/js/jquery.min.js"></script>
+<script src="/static/base/js/bootstrap.min.js"></script>
+{% block js %}
+
+{% endblock %}
+</body>
+</html>

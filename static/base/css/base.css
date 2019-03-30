@@ -1,0 +1,35 @@
+#header{
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    line-height: 25px;
+    padding: 2px;
+}
+
+#header ul, li{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#header li{
+    float: left;
+    padding: 5px;
+}
+#header li:after{
+    content: "";
+    display: block;
+    height: 0;
+    overflow: hidden;
+    clear: bottom;
+}
+#header li a {
+    text-decoration: none;
+}
+#header li a:hover {
+    border: 1px solid blue;
+    border-radius: 5px;
+    background-color: cornflowerblue;
+    padding: 5px;
+}
+

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block css %}
+    <link rel="stylesheet" href="/static/index.css">
+{% endblock %}
+{% block content %}
+    <div class="row category">
+        <ul>
+            <li>菜品分类： </li>
+            {% for cate in cates %}
+                <li class="cate-item">{{ cate.name }}</li>
+            {% endfor %}
+
+            <div class="clearfix"></div>
+        </ul>
+    </div>
+    <div id="foods-list">
+        <ul>
+            {% for foods in foods_list %}
+
+
+
+            <li>
+                <dl>
+                    <dt>
+                        <img width="140" height="160" src="/static/media/{{ foods.image }}">
+                    </dt>
+                    <dd>{{ foods.name }}</dd>
+                    <dd>{{ foods.category.name }}- ￥{{ foods.price }} </dd>
+                    <dd><button class="btn btn-success">抢购</button></dd>
+                </dl>
+            </li>
+            {% endfor %}
+
+            <div class="clearfix"></div>
+        </ul>
+
+    </div>
+
+{% endblock %}

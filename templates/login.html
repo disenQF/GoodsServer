@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block title %}
+    用户登录页面
+{% endblock %}
+{% block content %}
+    <div style="text-align: center">
+        <div id="login" style="width: 500px">
+            <h3 class="text-center">用户登录页面</h3>
+            {% if msg %}
+                <div class="text-danger">
+                    <h5>{{ msg }}</h5>
+                </div>
+            {% endif %}
+            <form class="form form-horizontal" action="/login/" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="phone" class="col-xs-3">手机号:</label>
+                    <div class="col-xs-6">
+                        <input id="phone" class="form-control " name="phone">
+                    </div>
+
+                </div>
+
+                <button type="submit" class="btn btn-default">注册</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
